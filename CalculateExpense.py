@@ -3,26 +3,37 @@ print(""" NAME: WOSSEN
       Input your costs and 
       calculate your total Expense \n""")
 
-sum = 0
 print("You can exit anytime, by writing 'exit'")
-print(" Please state number of items:")
-item_num = input()
+
+
+sum = 0
 all_items = {}
 
-if item_num == "exit":
+def get_input(prompt):
+    input_value = input(prompt)
+    if input_value.lower() == "exit":
+        print("Exiting...")
+        exit()
+    return input_value
+
+item_num = get_input(" Please state number of items:")
+    
+if not item_num.isdigit():
+    print("Please enter an integer number!")
     exit()
-    # if not a number?
 
 for i in range(int(item_num)):
-    print("item - ")
-    item = input()
-    # if exit?
-    print("cost -")
-    cost = input()
+    item = get_input("item - ")
+    cost = get_input("cost - ")
+ 
+    if not cost.isdigit():
+        print("Please enter an integer number!")
+        exit()
+
     all_items[item] = cost
     sum += int(cost)
-    print(f"total is {sum}")
-    
+print("---------------------------")
 for key, value in all_items.items():
     print(key, value)
-print(f"   {sum}")
+print("-------------")
+print(f"Total = {sum}")
